@@ -11,6 +11,11 @@ body {
 	border: white solid 2px;
 	border-radius: 10px;
 	padding: 5px;
+
+	
+	#control {
+		display: flex;
+	}
       
 	#address_bar {
 		font-size: 16px;
@@ -18,15 +23,14 @@ body {
 		justify-content: center;
 	}
 
-	#control {
-		display: flex;
-	}
-
 	#input_address {
+		color: white;
+		width: 100%;
 		font-size: 16px;
-		font-family: Gintronic;
+		font-family: Source Code Pro;
 		border: white solid 2px;
 		border-radius: 5px;
+		background-color: #995fa183;
 	}
 	#menu { 
 		display: flex;
@@ -34,13 +38,14 @@ body {
 	}
 }
 
-#browser {
+.browser {
 	display: grid;
-	grid-template-columns: 80% 20%;
+	grid-template-columns: 100% 0%;
 	margin-top: 5px; 
+	transition: ease 1s;
 
 	#content {
-		font-family: Gintronic;
+		font-family: Source Code Pro;
 		font-size: 16px;
 		border-radius: 10px;
 		padding: 5px;
@@ -48,11 +53,15 @@ body {
 		border: solid 2px white;
 	}
 	#menu_bar { 
+		/* opacity: 0; */
+		transition: 1s;
+		color: white; 
 		border: solid 2px white; 
 		border-radius: 10px;
 		margin-left: 5px;  
 		font-family: Gintronic;
 		padding: 5px; 
+		
 	}
 }
 
@@ -75,11 +84,46 @@ button:hover {
 #go_btn {
 	border-radius: 5px;
 	font-size: 16px;
-	background-color: green;
+	background-color: rgb(235, 88, 124);
 	transition: background-color 0, 3s ease;
 }
 
 #go_btn:hover {
-	background-color: rgb(2, 88, 2);
+	background-color: #a02f4b;
 	color: white;
+}
+
+
+.ShowHistory {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	margin-top: 5px; 
+	transition: ease 1s;
+
+	#content {
+		font-family: Source Code Pro;
+		font-size: 16px;
+		border-radius: 10px;
+		padding: 5px;
+		color: white;
+		border: solid 2px white;
+	}
+	#menu_bar { 
+		display: grid; 
+		transition: 1s;
+		grid-template-columns: 30% 70%;
+		color: white; 
+		opacity: 100%;
+		border: solid 2px white; 
+		border-radius: 10px;
+		margin-left: 5px;  
+		font-family: Source Code Pro;
+		padding: 5px; 
+
+	}
+}
+
+		
+.HistoryTime { 
+	text-align: right; 
 }

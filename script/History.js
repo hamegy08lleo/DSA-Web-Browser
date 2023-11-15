@@ -7,16 +7,14 @@ class Navigation {
 }
 
 
-history = []
+let historyArray = [];
 
-function History() { 
+let History = {}; 
 
-        this.add = function(address) { 
-                history.push(new Navigation(address)); 
-        }
+History.add = function(address) { 
+        historyArray.push(new Navigation(address));
+}
 
-        this.add = function() { 
-                history.length = 0; 
-        }
-
+History.clear = function() { 
+        historyArray.length = 0; 
 }
