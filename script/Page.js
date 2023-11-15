@@ -1,6 +1,6 @@
 class Page { 
-        constructor(link, pre = null, next = null) { 
-                this.link = link;
+        constructor(address, pre = null, next = null) { 
+                this.address = address;
                 this.pre = pre; 
                 this.next = next; 
         }

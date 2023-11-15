@@ -4,18 +4,23 @@
         <title> 
                 HTV Web Browser
         </title>
+        <link rel = "stylesheet" href = "style.css"> 
 </head>
 <body> 
-        <div id = "address_bar">
-                <button onclick = "Back()"> < </button>
-                <button onclick = "Next()"> > </button>
-                <input type = "text" id = "input_address" placeholder = "Enter Address"> 
-                <button onclick = "Navigate()"> Go </button>
+        <div id = "tool_bar">
+                <span id = "control"> 
+                        <button onclick = "back()"> < </button>
+                        <button onclick = "next()"> > </button>        
+                </span>
+                <span id = "address_bar">                
+                        <input type = "text" id = "input_address" placeholder = "Enter Address"> 
+                        <button id = "GoButton" onclick="navigate()"> Go </button>
+                </span>
         </div>
         
-        <div id = "content"> 
-
-        </div>
+        <p id = "content"> 
+                
+        </p>
    
         <script src = "./script/Page.js"></script>
         <script src = "./script/Tab.js"></script>

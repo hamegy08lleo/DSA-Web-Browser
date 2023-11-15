@@ -1,7 +1,6 @@
 class Tab { 
         constructor() { 
                 this.head = this.tail = this.current = null; 
-                this.navigate("Google.com"); 
         }
         deleteAll(p) {
                 if (p == null) { 
@@ -29,9 +28,10 @@ class Tab {
                 }
                 else { 
                         this.deleteAll(this.current.next); 
-                        p.pre = this.tail; 
-                        this.tail.next = p; 
-                        this.tail = p; 
+                        p.pre = this.current;
+                        this.tail = p;  
+                        this.current.next = p; 
+                        this.current = p; 
                         return;
                 }
         }
