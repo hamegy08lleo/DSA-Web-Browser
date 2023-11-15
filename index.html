@@ -14,15 +14,27 @@
                 </span>
                 <span id = "address_bar">                
                         <input type = "text" id = "input_address" placeholder = "Enter Address"> 
-                        <button id = "GoButton" onclick="navigate()"> Go </button>
+                        <button id = "go_btn" onclick="navigate()"> Go </button>
+                </span>
+                <span id = "menu"> 
+                        <button id = "menu_btn" onclick="showHistory()"> History </button>\
+                        <button id = "menu_btn"> Bookmarks </button>
+
                 </span>
         </div>
         
-        <p id = "content"> 
+        <div id = "browser"> 
                 
-        </p>
+                <span id = "content"> 
+                        
+                </span>
+                <span id = "menu_bar">
+                        
+                </span>
+        </div>
    
         <script src = "./script/Page.js"></script>
         <script src = "./script/Tab.js"></script>
+        <script src = "./script/History.js"></script>
         <script src = "./script/main.js"></script>
 </body>

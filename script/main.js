@@ -1,33 +1,41 @@
 let tab = new Tab(); 
+const history = new History(); 
 
 navigate_specific("Google.com"); 
 
 function navigate() { 
         let address = document.getElementById("input_address").value; 
-        tab.navigate(address); 
+        tab.navigate(address);
+        history().add(address);  
         showContent(address); 
 }
 
 function navigate_specific(address) { 
         tab.navigate(address); 
+        history().add(address);  
         showContent(address); 
 }
 
 function showContent(address) { 
         let content = document.getElementById("content"); 
-        content.innerHTML = "Loading " + address + " ...";         
+        console.log(address); 
+        content.innerHTML = "Loading " + address + "...";         
 }
 
 function back() { 
-        tab.backPage(); 
-        let address = tab.current.address; 
-        showContent(address); 
+        if (tab.backPage()) {             
+                let address = tab.current.address; 
+                history().add(address); 
+                showContent(address); 
+        }; 
 }
 
 function next() { 
-        tab.nextPage(); 
-        let address = tab.current.address; 
-        showContent(address); 
+        if (tab.nextPage()) { 
+                let address = tab.current.address;
+                history().add(address); 
+                showContent(address); 
+        }
 }
 
 document.getElementById("input_address").addEventListener('keydown', function(event) {
@@ -35,3 +43,10 @@ document.getElementById("input_address").addEventListener('keydown', function(ev
                 navigate(); 
         }
 });
+
+function showHistory() { 
+        let menu = document.getElementById("menu_bar"); 
+        for (const i of history) { 
+                menu.innerHTML += i.address + " " + i.time + "\n"; 
+        }
+}

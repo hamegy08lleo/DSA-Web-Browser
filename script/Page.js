@@ -4,4 +4,5 @@ class Page {
                 this.pre = pre; 
                 this.next = next; 
         }
+
 }
