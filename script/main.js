@@ -1,38 +1,35 @@
-let tab = new Tab();
-
-navigate_specific("Google.com");
-
+newTab(); 
 function navigate() {
         let address = document.getElementById("input_address").value;
         if (address == "") return;
-        tab.navigate(address);
+        TabList.currentTab.navigate(address);
         History.add(address);
         showContent(address);
 }
 
 function navigate_specific(address) {
-        tab.navigate(address);
+        TabList.currentTab.navigate(address);
         History.add(address);
         showContent(address);
 }
 
-function showContent(address) {
-        let content = document.getElementById("content");
+function showContent(address = TabList.currentTab.current.address) {
+        let content = document.getElementById("tab_content");
         console.log(address);
         content.innerHTML = "Loading " + address + "...";
 }
 
 function back() {
-        if (tab.backPage()) {
-                let address = tab.current.address;
+        if (TabList.currentTab.backPage()) {
+                let address = TabList.currentTab.current.address;
                 History.add(address);
                 showContent(address);
         };
 }
 
 function next() {
-        if (tab.nextPage()) {
-                let address = tab.current.address;
+        if (TabList.currentTab.nextPage()) {
+                let address = TabList.currentTab.current.address;
                 History.add(address);
                 showContent(address);
         }
@@ -46,17 +43,6 @@ document.getElementById("input_address").addEventListener('keydown', function (e
 
 function printDate(D = Date()) {
         return D.toDateString() + " " + D.getHours() + ":" + D.getMinutes() + ":" + D.getSeconds();
-}
-
-
-async function myFunction() {
-        console.log("start"); 
-        await delay(1000); // 1000 milliseconds = 1 second
-        console.log("end"); 
-}
-
-function delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 let mode = ["show-history", "show-bookmarks"]
@@ -130,4 +116,38 @@ function addToBookmarks() {
         let address = document.getElementById("input_address").value; 
         if (address.length == 0) return; 
         Bookmarks.add(address); 
+}
+
+function refreshContent() { 
+        let content = document.getElementById("content"); 
+        content.innerHTML = ""; 
+        let newTabBar = document.createElement("div"); 
+        newTabBar.id = "tab_bar"; 
+        for (let i = 0; i < TabList.TabArray.length; i++) { 
+                let newDiv = document.createElement('div'); 
+                let newTabButton = document.createElement('button'); 
+                newTabButton.id = i; 
+                newTabButton.innerHTML = "Tab " + (i + 1);
+                newTabButton.onclick = "selectTab()"; 
+                newDiv.appendChild(newTabButton); 
+
+                newTabBar.appendChild(newDiv); 
+        }
+        content.appendChild(newTabBar); 
+        let tab_content = document.createElement("div"); 
+        tab_content.id = "tab_content"; 
+        content.appendChild(tab_content);
+        showContent(); 
+
+}
+refreshContent();
+
+function selectTab(index) { 
+        console.log(index); 
+}
+
+function newTab() { 
+        TabList.add(); 
+        History.add(TabList.currentTab.current.address); 
+        refreshContent();
 }

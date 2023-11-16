@@ -10,10 +10,17 @@
 
 <body>
         <div id="tool_bar">
-                <span id="control">
-                        <button onclick="back()">
-                                < </button>
-                                        <button onclick="next()"> > </button>
+                <span id="control" class = "control">
+                        <span> 
+                                <button onclick="back()"> < </button>
+                        </span>
+                        
+                        <span> 
+                                <button onclick="next()"> > </button>
+                        </span>
+                        <span> 
+                                <button onclick="newTab()"> + </button>
+                        </span>
                 </span>
                 <span id="address_bar" class="address_bar">
                         <span class = "search_bar">
@@ -32,9 +39,9 @@
 
         <div id="browser" class="browser">
 
-                <span id="content">
-
-                </span>
+                <div id="content">
+                        
+                </div>
                 <span id="menu_bar">
 
                 </span>
@@ -44,5 +51,6 @@
         <script src="./script/Tab.js"></script>
         <script src="./script/History.js"></script>
         <script src="./script/Bookmarks.js"></script>
+        <script src="./script/TabList.js"></script>
         <script src="./script/main.js"></script>
 </body>

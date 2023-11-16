@@ -1,6 +1,7 @@
 class Tab { 
 	constructor() { 
 		this.head = this.tail = this.current = null; 
+		this.navigate("Google.com"); 
 	}
 	deleteAll(p) {
 		if (p == null) { 

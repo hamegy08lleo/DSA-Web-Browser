@@ -13,8 +13,14 @@ body {
 	padding: 5px;
 
 	
-	#control {
-		display: flex;
+	.control {
+		display: flex; 
+		span { 
+			margin-right: 5px; 
+		}
+		span::last-child { 
+			margin-right: 0px;
+		}
 	}
       
 	.address_bar {
@@ -29,6 +35,7 @@ body {
 		}
 		.search_bar { 
 			display: flex;
+			width: 70%;
 		}
 	}
 
@@ -57,6 +64,8 @@ body {
 	transition: ease 1s;
 
 	#content {
+		display: grid; 
+		grid-template-rows: 50% 50%;
 		font-family: Source Code Pro;
 		font-size: 16px;
 		border-radius: 10px;
@@ -114,14 +123,14 @@ button:hover {
 	margin-top: 5px; 
 	transition: ease 1s;
 
-	#content {
+	/* #content {
 		font-family: Source Code Pro;
 		font-size: 16px;
 		border-radius: 10px;
 		padding: 5px;
 		color: white;
 		border: solid 2px white;
-	}
+	} */
 	#menu_bar { 
 		display: grid; 
 		transition: ease 1s;
@@ -145,14 +154,14 @@ button:hover {
 	margin-top: 5px; 
 	transition: ease 1s;
 
-	#content {
+	/* #content {
 		font-family: Source Code Pro;
 		font-size: 16px;
 		border-radius: 10px;
 		padding: 5px;
 		color: white;
 		border: solid 2px white;
-	}
+	} */
 	#menu_bar { 
 		display: grid; 
 		transition: ease 1s;
@@ -171,4 +180,20 @@ button:hover {
 		
 .right-align { 
 	text-align: right; 
+}
+
+#tab_bar { 
+	display: flex; 
+	margin: 5px; 
+	div { 
+		margin-right: 5px;
+	}
+}
+
+#tab_content { 
+	margin: 5px; 
+	border: solid white 2px;
+	font-size: 17px; 
+	border-radius: 10px;
+	padding: 5px; 
 }
