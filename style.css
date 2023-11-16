@@ -17,10 +17,19 @@ body {
 		display: flex;
 	}
       
-	#address_bar {
+	.address_bar {
 		font-size: 16px;
 		display: flex;
 		justify-content: center;
+		span { 
+			margin-right: 5px; 
+		}
+		span:last-child { 
+			margin-right: 0px;
+		}
+		.search_bar { 
+			display: flex;
+		}
 	}
 
 	#input_address {
@@ -31,6 +40,9 @@ body {
 		border: white solid 2px;
 		border-radius: 5px;
 		background-color: #995fa183;
+		focus { 
+			outline: none
+		}
 	}
 	#menu { 
 		display: flex;
@@ -53,13 +65,14 @@ body {
 		border: solid 2px white;
 	}
 	#menu_bar { 
-		/* opacity: 0; */
+		opacity: 0;
+		white-space: nowrap;
 		transition: 1s;
 		color: white; 
 		border: solid 2px white; 
 		border-radius: 10px;
 		margin-left: 5px;  
-		font-family: Gintronic;
+		font-family: Source Code Pro;
 		padding: 5px; 
 		
 	}
@@ -82,9 +95,11 @@ button:hover {
 }
 
 #go_btn {
+	
+	border-color: white solid 2px;
 	border-radius: 5px;
 	font-size: 16px;
-	background-color: rgb(235, 88, 124);
+	background-color: rgb(235, 88, 125);
 	transition: background-color 0, 3s ease;
 }
 
@@ -93,8 +108,7 @@ button:hover {
 	color: white;
 }
 
-
-.ShowHistory {
+.show-history { 
 	display: grid;
 	grid-template-columns: 50% 50%;
 	margin-top: 5px; 
@@ -110,7 +124,8 @@ button:hover {
 	}
 	#menu_bar { 
 		display: grid; 
-		transition: 1s;
+		transition: ease 1s;
+		white-space: nowrap;
 		grid-template-columns: 30% 70%;
 		color: white; 
 		opacity: 100%;
@@ -123,7 +138,37 @@ button:hover {
 	}
 }
 
+
+.show-bookmarks {
+	display: grid;
+	grid-template-columns: 80% 20%;
+	margin-top: 5px; 
+	transition: ease 1s;
+
+	#content {
+		font-family: Source Code Pro;
+		font-size: 16px;
+		border-radius: 10px;
+		padding: 5px;
+		color: white;
+		border: solid 2px white;
+	}
+	#menu_bar { 
+		display: grid; 
+		transition: ease 1s;
+		white-space: nowrap;
+		color: white; 
+		opacity: 100%;
+		border: solid 2px white; 
+		border-radius: 10px;
+		margin-left: 5px;  
+		font-family: Source Code Pro;
+		padding: 5px; 
+
+	}
+}
+
 		
-.HistoryTime { 
+.right-align { 
 	text-align: right; 
 }

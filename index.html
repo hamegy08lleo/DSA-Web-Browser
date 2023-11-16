@@ -1,40 +1,48 @@
 <!DOCTYPE html>
+
 <head>
 
-        <title> 
+        <title>
                 HTV Web Browser
         </title>
-        <link rel = "stylesheet" href = "style.css"> 
+        <link rel="stylesheet" href="style.css">
 </head>
-<body> 
-        <div id = "tool_bar">
-                <span id = "control"> 
-                        <button onclick = "back()"> < </button>
-                        <button onclick = "next()"> > </button>        
+
+<body>
+        <div id="tool_bar">
+                <span id="control">
+                        <button onclick="back()">
+                                < </button>
+                                        <button onclick="next()"> > </button>
                 </span>
-                <span id = "address_bar">                
-                        <input type = "text" id = "input_address" placeholder = "Enter Address"> 
-                        <button id = "go_btn" onclick="navigate()"> Go </button>
+                <span id="address_bar" class="address_bar">
+                        <span class = "search_bar">
+                                <input type="text" id="input_address" placeholder="Enter Address">
+                                <button id="go_btn" onclick="navigate()"> Go </button>
+                        </span>
+                        <span>
+                                <button id="add_bkmk" onclick="addToBookmarks()"> Add To Bookmarks </button>
+                        </span>
                 </span>
-                <span id = "menu"> 
-                        <button id = "menu_btn" onclick="showHistory()"> History </button>\
-                        <button id = "menu_btn"> Bookmarks </button>
+                <span id="menu">
+                        <button id="menu_btn" onclick="showHistory()"> History </button>\
+                        <button id="menu_btn" onclick="showBookmarks()"> Bookmarks </button>
+                </span>
+        </div>
+
+        <div id="browser" class="browser">
+
+                <span id="content">
+
+                </span>
+                <span id="menu_bar">
 
                 </span>
         </div>
-        
-        <div id = "browser" class = "browser"> 
-                
-                <span id = "content"> 
-                        
-                </span>
-                <span id = "menu_bar">
-                        
-                </span>
-        </div>
-   
-        <script src = "./script/Page.js"></script>
-        <script src = "./script/Tab.js"></script>
-        <script src = "./script/History.js"></script>
-        <script src = "./script/main.js"></script>
+
+        <script src="./script/Page.js"></script>
+        <script src="./script/Tab.js"></script>
+        <script src="./script/History.js"></script>
+        <script src="./script/Bookmarks.js"></script>
+        <script src="./script/main.js"></script>
 </body>
