@@ -136,8 +136,17 @@ function refreshContent() {
                 newTabButton.id = i; 
                 newTabButton.innerHTML = "Tab " + (i + 1);
                 newTabButton.onclick = function() { 
-                        selectTab(i); 
+                        if (event.button == 0) {
+                                console.log("CHUOT TRAI"); 
+                                selectTab(i); 
+                        }
                 }; 
+
+                newTabButton.addEventListener('contextmenu', function (e) {
+                        e.preventDefault(); // Ngăn chặn hành vi mặc định của chuột phải
+                        deleteTab(i);
+                    });
+            
                 newDiv.appendChild(newTabButton); 
 
                 newTabBar.appendChild(newDiv); 
@@ -164,6 +173,12 @@ function newTab() {
         refreshContent();
 }
 
+function deleteTab(index) { 
+        console.log("DELETE" + index); 
+        TabList.delete(index); 
+        refreshContent(); 
+}
+
 function privateMode()
 {
         private = !private;  
@@ -171,6 +186,6 @@ function privateMode()
 }
 
 function handleClick(address) {
-        alert('You clicked the span element!');
+        console.log('You clicked the span element!');
         navigate_specific(address); 
 }
