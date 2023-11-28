@@ -25,10 +25,9 @@ TabList.delete = function(index) {
                         this.currentTabIndex--; 
                         this.currentTab = this.TabArray[index-1]; 
                 }
-                else { 
-                        if (this.TabArray.length == 0) { 
-                                this.add(); 
-                        }
-                }
+  
+        }
+        if (this.TabArray.length == 0) { 
+                this.add(); 
         }
 }
