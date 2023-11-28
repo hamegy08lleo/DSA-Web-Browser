@@ -153,6 +153,9 @@ refreshContent();
 
 function selectTab(index) { 
         console.log(index); 
+        TabList.currentTabIndex = index; 
+        TabList.currentTab = TabList.TabArray[TabList.currentTabIndex]
+        refreshContent(); 
 }
 
 function newTab() { 
