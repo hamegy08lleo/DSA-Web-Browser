@@ -104,7 +104,9 @@ function showBookmarks() {
                         newAddress.classList.toggle("right-align"); 
 
 
-                        newAddress.addEventListener('click', handleClick);
+                        newAddress.addEventListener('click', function() { 
+                                handleClick(i); 
+                        });
 
                         menu_bar.appendChild(newAddress); 
 
@@ -133,7 +135,9 @@ function refreshContent() {
                 let newTabButton = document.createElement('button'); 
                 newTabButton.id = i; 
                 newTabButton.innerHTML = "Tab " + (i + 1);
-                newTabButton.onclick = "selectTab()"; 
+                newTabButton.onclick = function() { 
+                        selectTab(i); 
+                }; 
                 newDiv.appendChild(newTabButton); 
 
                 newTabBar.appendChild(newDiv); 
@@ -163,6 +167,7 @@ function privateMode()
         console.log(private);
 }
 
-function handleClick() {
+function handleClick(address) {
         alert('You clicked the span element!');
+        navigate_specific(address); 
 }
