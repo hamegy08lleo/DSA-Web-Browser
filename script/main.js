@@ -1,10 +1,12 @@
 newTab(); 
+let private = false; 
 function navigate() {
         let address = document.getElementById("input_address").value;
         if (address == "") return;
         TabList.currentTab.navigate(address);
-        History.add(address);
         showContent(address);
+        if(private == false)
+                History.add(address);
 }
 
 function navigate_specific(address) {
@@ -150,4 +152,10 @@ function newTab() {
         TabList.add(); 
         History.add(TabList.currentTab.current.address); 
         refreshContent();
+}
+
+function privateMode()
+{
+        private = !private; 
+        console.log(private); 
 }

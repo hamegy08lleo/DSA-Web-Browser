@@ -89,6 +89,7 @@ body {
 
 button {
 	background-color: #a468ad;
+	margin: 2px;
 	border: none;
 	color: white;
 	text-align: center;
