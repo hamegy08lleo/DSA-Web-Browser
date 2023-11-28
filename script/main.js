@@ -11,8 +11,8 @@ function navigate() {
 
 function navigate_specific(address) {
         TabList.currentTab.navigate(address);
-        History.add(address);
         showContent(address);
+        History.add(address);
 }
 
 function showContent(address = TabList.currentTab.current.address) {
@@ -103,6 +103,9 @@ function showBookmarks() {
                         let newAddress = document.createElement('span'); 
                         newAddress.classList.toggle("right-align"); 
 
+
+                        newAddress.addEventListener('click', handleClick);
+
                         menu_bar.appendChild(newAddress); 
 
                         newAddress.innerHTML += i; 
@@ -156,6 +159,10 @@ function newTab() {
 
 function privateMode()
 {
-        private = !private; 
-        console.log(private); 
+        private = !private;  
+        console.log(private);
+}
+
+function handleClick() {
+        alert('You clicked the span element!');
 }
