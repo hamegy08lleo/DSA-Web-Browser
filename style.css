@@ -152,7 +152,7 @@ button:hover {
 
 .show-bookmarks {
 	display: grid;
-	grid-template-columns: 80% 20%;
+	grid-template-columns: 78% 22%;
 	margin-top: 5px; 
 	transition: ease 1s;
 

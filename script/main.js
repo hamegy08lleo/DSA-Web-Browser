@@ -18,6 +18,9 @@ function navigate_specific(address) {
 function showContent(address = TabList.currentTab.current.address) {
         let content = document.getElementById("tab_content");
         console.log(address);
+        if(address.length >50){
+                address = address.slice(0,50);
+        }
         content.innerHTML = "Loading " + address + "...";
 }
 
@@ -66,19 +69,29 @@ function showHistory() {
         if (on == false) {
                 browser.classList.toggle("show-history");
                 menu_bar.innerHTML = "";
-                for (const i of historyArray) {
+                for (const address of historyArray) {
+                        let i = address;
                         let newAddress = document.createElement('span');
-
+                        console.log(typeof i.address);
+                        console.log(i.address);
+                        if(i.address.length >= 50){
+                                i.address = i.address.slice(0,50);
+                        }
                         menu_bar.appendChild(newAddress);
-
+                        
                         let newTime = document.createElement('span');
                         newTime.classList.toggle("right-align");
-
+                        
                         menu_bar.appendChild(newTime);
-
-
+                        
+                        
                         newTime.innerHTML += printDate(i.time);
                         newAddress.innerHTML += i.address;
+                        
+                        newAddress.addEventListener('click',function(){
+                                handleClick(i.address);
+                        });
+
 
 
                 }
@@ -99,17 +112,14 @@ function showBookmarks() {
         if (on == false) { 
                 menu_bar.innerHTML = "";
                 browser.classList.toggle("show-bookmarks");
-                for (const adress of BookmarksSet) { 
-                        let i = adress;
+                for (const address of BookmarksSet) { 
+                        let i = address;
                         let newAddress = document.createElement('span'); 
                         newAddress.classList.toggle("right-align"); 
-                        console.log(typeof i);
-                        console.log(i);
                         if (i.length >= 40){
                                 i = i.slice(0,40);
                         }
-                        console.log(i);
-                        
+                        console.log(i.length);
                         newAddress.addEventListener('click', function() { 
                                 handleClick(i); 
                         });
