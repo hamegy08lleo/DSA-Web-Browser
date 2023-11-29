@@ -83,7 +83,8 @@ body {
 		margin-left: 5px;  
 		font-family: Source Code Pro;
 		padding: 5px; 
-		
+		max-height: 300px;
+		overflow: auto;
 	}
 }
 
@@ -154,9 +155,7 @@ button:hover {
 	grid-template-columns: 80% 20%;
 	margin-top: 5px; 
 	transition: ease 1s;
-	overflow: hidden; /* Add this property */
-	text-overflow: ellipsis; /* Add this property */
-	white-space: nowrap; /* Add this property */
+
 
 	/* #content {
 		font-family: Source Code Pro;
@@ -177,6 +176,9 @@ button:hover {
 		margin-left: 5px;  
 		font-family: Source Code Pro;
 		padding: 5px; 
+		text-overflow: ellipsis; 
+		white-space: nowrap; 
+		overflow: auto;
 
 	}
 }

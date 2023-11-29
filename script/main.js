@@ -99,11 +99,17 @@ function showBookmarks() {
         if (on == false) { 
                 menu_bar.innerHTML = "";
                 browser.classList.toggle("show-bookmarks");
-                for (const i of BookmarksSet) { 
+                for (const adress of BookmarksSet) { 
+                        let i = adress;
                         let newAddress = document.createElement('span'); 
                         newAddress.classList.toggle("right-align"); 
-
-
+                        console.log(typeof i);
+                        console.log(i);
+                        if (i.length >= 40){
+                                i = i.slice(0,40);
+                        }
+                        console.log(i);
+                        
                         newAddress.addEventListener('click', function() { 
                                 handleClick(i); 
                         });
@@ -117,6 +123,7 @@ function showBookmarks() {
                 menu_bar.innerHTML = ""; 
                 browser.classList.toggle("show-bookmarks"); 
         }
+        
 }
 
 function addToBookmarks() { 
@@ -212,4 +219,4 @@ function createNotification(message) {
         setTimeout(() => {
             notificationContainer.removeChild(notification);
         }, 2000);
-    }
+}
