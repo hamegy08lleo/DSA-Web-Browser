@@ -154,6 +154,9 @@ button:hover {
 	grid-template-columns: 80% 20%;
 	margin-top: 5px; 
 	transition: ease 1s;
+	overflow: hidden; /* Add this property */
+	text-overflow: ellipsis; /* Add this property */
+	white-space: nowrap; /* Add this property */
 
 	/* #content {
 		font-family: Source Code Pro;
@@ -197,4 +200,18 @@ button:hover {
 	font-size: 17px; 
 	border-radius: 10px;
 	padding: 5px; 
+}
+
+.notification {
+	width: 400px;
+	height: 20px;
+	background-color: #01000079;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 5px;
+	color: rgb(220, 199, 199);
+	font-family: Source Code Pro;
+	overflow: hidden; /* Add this property */
+	text-overflow: ellipsis; /* Add this property */
+	white-space: nowrap; /* Add this property */
 }

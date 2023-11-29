@@ -145,6 +145,7 @@ function refreshContent() {
                 newTabButton.addEventListener('contextmenu', function (e) {
                         e.preventDefault(); // Ngăn chặn hành vi mặc định của chuột phải
                         deleteTab(i);
+                        createNotification("You have deleted Tab"+ (i+1));
                     });
             
                 newDiv.appendChild(newTabButton); 
@@ -183,9 +184,32 @@ function privateMode()
 {
         private = !private;  
         console.log(private);
+
+        if(private == true)
+        {
+                createNotification("You are in private mode");
+        }
+        else
+        {
+                createNotification("You are in normal mode");
+        }
 }
 
 function handleClick(address) {
         console.log('You clicked the span element!');
         navigate_specific(address); 
+        createNotification("you have access to: "+ address);    
 }
+
+function createNotification(message) {
+        const notificationContainer = document.getElementById('notification-container');
+        const notification = document.createElement('div');
+        notification.classList.add('notification');
+        notification.textContent = message;
+
+        notificationContainer.appendChild(notification);
+
+        setTimeout(() => {
+            notificationContainer.removeChild(notification);
+        }, 2000);
+    }
