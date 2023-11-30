@@ -65,6 +65,25 @@ function refresh_menu_bar(keep) {
         }
 }
 
+
+function getDateTime(now) {
+      
+        const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const monthsOfYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      
+        const dayAbr = daysOfWeek[now.getDay()];
+        const day = now.getDate().toString().padStart(2, '0');
+        const monthAbr = monthsOfYear[now.getMonth()];
+        const year = now.getFullYear();
+      
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+      
+        const formattedDateTime = `${dayAbr}, ${day} ${monthAbr} ${year} ${hours}:${minutes}:${seconds}`;
+        return formattedDateTime;
+}
+
 function showHistory() {
         var menu_bar = document.getElementById("menu_bar");
         var browser = document.getElementById("browser");
@@ -73,7 +92,10 @@ function showHistory() {
         if (on == false) {
                 browser.classList.toggle("show-history");
                 menu_bar.innerHTML = "";
-                for (const address of historyArray) {
+                let reversedHistoryArray = historyArray; 
+                reversedHistoryArray.reverse(); 
+                console.log("REVERSE"); 
+                for (const address of reversedHistoryArray) {
                         let i = address;
                         let newAddress = document.createElement('span');
                         console.log(typeof i.address);
@@ -89,7 +111,7 @@ function showHistory() {
                         menu_bar.appendChild(newTime);
                         
                         
-                        newTime.innerHTML += printDate(i.time);
+                        newTime.innerHTML += getDateTime(i.time);
                         newAddress.innerHTML += i.address;
                         
                         newAddress.addEventListener('click',function(){
