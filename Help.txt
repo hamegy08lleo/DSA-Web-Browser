@@ -7,10 +7,18 @@ sau đó bạn có thể ấn phím 'enter' hoặc nút Go để bắt đầu t�
 
 - Bạn cũng có thể truy cập vào trang trước đó hoặc sau đó bằng cái nút mũi tên ở góc trên bên trái 
 
+- Bạn muốn mở thêm nhiều tab, hãy ấn nút '+' 
+
+- Để xoá 1 tab bất kì, bạn hãy click chuột phải vào chúng
+
 - Để xem lại những hoạt động của mình hãy ấn vào 'History'
 
 - Để xem những trang web yêu thích của mình hãy ấn vào 'Bookmarks'
 
 - Bạn muốn những hoạt động của mình được an toàn, cùng đến với Private Mode bằng nút 'Private'
 
-- Bạn muốn mở thêm nhiều tab, hãy ấn nút '+' 
+- Để xoá toàn bộ lịch sử bạn hãy bấm chuột phải vào nút 'History'
+
+- Bạn chỉ muốn xoá từng mục lịch sử hoặc bookmark bạn hãy click chuột phải vào mục mà bạn muốn xoá
+
+
