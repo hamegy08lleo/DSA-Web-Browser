@@ -1,13 +1,23 @@
 newTab(); 
 let private = false; 
+
+function showingHistory() { 
+        let on = browser.classList.contains("show-history");
+        console.log("DUMACUU"); 
+        return on == true; 
+}
+
 function navigate() {
         let address = document.getElementById("input_address").value;
         if (address == "") return;
         TabList.currentTab.navigate(address);
         showContent(address);
+
+        if (showingHistory()) refreshHistory(); 
         if(private == false)
                 History.add(address);
         refreshContent(); 
+        if (showingHistory()) refreshHistory(); 
 }
 
 function navigate_specific(address) {
@@ -84,6 +94,37 @@ function getDateTime(now) {
         return formattedDateTime;
 }
 
+function refreshHistory() { 
+        let reversedHistoryArray = historyArray; 
+        reversedHistoryArray.reverse(); 
+        console.log("REVERSE"); 
+        for (const address of reversedHistoryArray) {
+                let i = address;
+                let newAddress = document.createElement('span');
+                console.log(typeof i.address);
+                console.log(i.address);
+                if(i.address.length >= 50){
+                        i.address = i.address.slice(0,50);
+                }
+                menu_bar.appendChild(newAddress);
+                
+                let newTime = document.createElement('span');
+                newTime.classList.toggle("right-align");
+                
+                menu_bar.appendChild(newTime);
+                
+                
+                newTime.innerHTML += getDateTime(i.time);
+                newAddress.innerHTML += i.address;
+                
+                newAddress.addEventListener('click',function(){
+                        handleClick(i.address);
+                });
+
+        }
+
+}
+
 function showHistory() {
         var menu_bar = document.getElementById("menu_bar");
         var browser = document.getElementById("browser");
@@ -92,44 +133,7 @@ function showHistory() {
         if (on == false) {
                 browser.classList.toggle("show-history");
                 menu_bar.innerHTML = "";
-                let reversedHistoryArray = historyArray; 
-                reversedHistoryArray.reverse(); 
-                console.log("REVERSE"); 
-                for (const address of reversedHistoryArray) {
-                        let i = address;
-                        let newAddress = document.createElement('span');
-                        console.log(typeof i.address);
-                        console.log(i.address);
-                        if(i.address.length >= 50){
-                                i.address = i.address.slice(0,50);
-                        }
-                        menu_bar.appendChild(newAddress);
-                        
-                        let newTime = document.createElement('span');
-                        newTime.classList.toggle("right-align");
-                        
-                        menu_bar.appendChild(newTime);
-                        
-                        
-                        newTime.innerHTML += getDateTime(i.time);
-                        newAddress.innerHTML += i.address;
-                        
-
-                        
-                        newAddress.addEventListener('click',function(){
-                                handleClick(i.address);
-                        });
-
-
-                        newAddress.addEventListener('contextmenu', function (e) {
-                                e.preventDefault(); // Ngăn chặn hành vi mặc định của chuột phải
-                                console.log("chuot phai");
-                                // createNotification("You have deleted Bookmark: "+ i);
-                                // // refreshBookmark();
-                        });
-
-                }
-
+                refreshHistory(); 
         }
         else {
                 menu_bar.innerHTML = "";
