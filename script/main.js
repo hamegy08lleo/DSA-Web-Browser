@@ -1,8 +1,6 @@
 newTab(); 
 let private = false;
 
-
-
 let mode = ["show-history", "show-bookmarks"]
 
 let history_btn = document.getElementById("history_btn"); 
@@ -182,6 +180,13 @@ function refreshBookmarks() {
                 newAddress.addEventListener('click', function() { 
                         handleClick(i); 
                 });
+                newAddress.addEventListener('contextmenu', function(e){
+                        e.preventDefault(); 
+                        Bookmarks.delete(i);
+                        refreshBookmarks();
+                        createNotification("You have deleted Bookmark: " + i);
+                });
+
 
                 menu_bar.appendChild(newAddress); 
 
