@@ -1,5 +1,5 @@
 newTab(); 
-let private = false;
+var private = false;
 
 let mode = ["show-history", "show-bookmarks"]
 
@@ -34,7 +34,8 @@ function navigate_specific(address) {
         showContent(address);
         createNotification("you have access to: "+ address);    
 
-        History.add(address);
+        if (private == false) 
+                History.add(address);
         refreshContent(); 
         if (showingHistory()) refreshHistory(); 
 }
@@ -51,18 +52,24 @@ function showContent(address = TabList.currentTab.current.address) {
 function back() {
         if (TabList.currentTab.backPage()) {
                 let address = TabList.currentTab.current.address;
-                History.add(address);
+                if (private == false) 
+                        History.add(address);
                 showContent(address);
+                createNotification("you have access to " + address);
         };
+        refreshHistory(); 
         refreshContent(); 
 }
 
 function next() {
         if (TabList.currentTab.nextPage()) {
                 let address = TabList.currentTab.current.address;
-                History.add(address);
+                if (private == false) 
+                        History.add(address);
+                createNotification("you have access to " + address);
                 showContent(address);
         }
+        refreshHistory(); 
         refreshContent(); 
 }
 
@@ -266,7 +273,10 @@ function selectTab(index) {
 function newTab() { 
         TabList.add(); 
         console.log(TabList.currentTab.current.address); 
-        History.add(TabList.currentTab.current.address); 
+        createNotification("You have created a new tab");  
+        if (private == false) 
+                History.add(TabList.currentTab.current.address); 
+        refreshHistory(); 
         refreshContent();
 }
 
