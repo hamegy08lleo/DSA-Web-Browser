@@ -93,6 +93,8 @@ function getDateTime(now) {
         return formattedDateTime;
 }
 
+// testing
+
 function refreshHistory() { 
         let reversedHistoryArray = []; 
         for (const address of historyArray) { 
