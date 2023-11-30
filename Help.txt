@@ -1,0 +1,16 @@
+Chào mừng đến với trình duyệt HTV 1.0
+
+- Để bắt đầu duyệt web, bạn hãy nhập địa chỉ vào ô địa chỉ
+sau đó bạn có thể ấn phím 'enter' hoặc nút Go để bắt đầu tìm kiếm
+
+- Nếu bạn yêu thích 1 trang web nào đó, hãy thêm vào mục yêu thích của mình bằng nút 'Add to Bookmarks'
+
+- Bạn cũng có thể truy cập vào trang trước đó hoặc sau đó bằng cái nút mũi tên ở góc trên bên trái 
+
+- Để xem lại những hoạt động của mình hãy ấn vào 'History'
+
+- Để xem những trang web yêu thích của mình hãy ấn vào 'Bookmarks'
+
+- Bạn muốn những hoạt động của mình được an toàn, cùng đến với Private Mode bằng nút 'Private'
+
+- Bạn muốn mở thêm nhiều tab, hãy ấn nút '+' 

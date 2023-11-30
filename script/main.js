@@ -20,6 +20,9 @@ function navigate_specific(address) {
 function showContent(address = TabList.currentTab.current.address) {
         let content = document.getElementById("tab_content");
         console.log(address);
+        if(address.length >50){
+                address = address.slice(0,50);
+        }
         content.innerHTML = "Loading " + address + "...";
 }
 
@@ -70,20 +73,28 @@ function showHistory() {
         if (on == false) {
                 browser.classList.toggle("show-history");
                 menu_bar.innerHTML = "";
-                for (const i of historyArray) {
+                for (const address of historyArray) {
+                        let i = address;
                         let newAddress = document.createElement('span');
-
+                        console.log(typeof i.address);
+                        console.log(i.address);
+                        if(i.address.length >= 50){
+                                i.address = i.address.slice(0,50);
+                        }
                         menu_bar.appendChild(newAddress);
-
+                        
                         let newTime = document.createElement('span');
                         newTime.classList.toggle("right-align");
-
+                        
                         menu_bar.appendChild(newTime);
-
-
+                        
+                        
                         newTime.innerHTML += printDate(i.time);
                         newAddress.innerHTML += i.address;
-
+                        
+                        newAddress.addEventListener('click',function(){
+                                handleClick(i.address);
+                        });
 
                 }
 
@@ -103,11 +114,14 @@ function showBookmarks() {
         if (on == false) { 
                 menu_bar.innerHTML = "";
                 browser.classList.toggle("show-bookmarks");
-                for (const i of BookmarksSet) { 
+                for (const address of BookmarksSet) { 
+                        let i = address;
                         let newAddress = document.createElement('span'); 
                         newAddress.classList.toggle("right-align"); 
-
-
+                        if (i.length >= 40){
+                                i = i.slice(0,40);
+                        }
+                        console.log(i.length);
                         newAddress.addEventListener('click', function() { 
                                 handleClick(i); 
                         });
@@ -121,6 +135,7 @@ function showBookmarks() {
                 menu_bar.innerHTML = ""; 
                 browser.classList.toggle("show-bookmarks"); 
         }
+        
 }
 
 function addToBookmarks() { 
@@ -150,6 +165,7 @@ function refreshContent() {
                 newTabButton.addEventListener('contextmenu', function (e) {
                         e.preventDefault(); // Ngăn chặn hành vi mặc định của chuột phải
                         deleteTab(i);
+                        createNotification("You have deleted Tab"+ (i+1));
                     });
             
                 newDiv.appendChild(newTabButton); 
@@ -188,9 +204,48 @@ function privateMode()
 {
         private = !private;  
         console.log(private);
+
+        if(private == true)
+        {
+                createNotification("You are in private mode");
+        }
+        else
+        {
+                createNotification("You are in normal mode");
+        }
 }
 
 function handleClick(address) {
         console.log('You clicked the span element!');
         navigate_specific(address); 
+        createNotification("you have access to: "+ address);    
+}
+
+function createNotification(message) {
+        const notificationContainer = document.getElementById('notification-container');
+        const notification = document.createElement('div');
+        notification.classList.add('notification');
+        notification.textContent = message;
+
+        notificationContainer.appendChild(notification);
+
+        setTimeout(() => {
+            notificationContainer.removeChild(notification);
+        }, 2000);
+}
+
+function user_manual()
+{
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+           if (xhr.readyState === 4) {
+             if (xhr.status === 200) {
+                alert(xhr.responseText);
+             } else {
+                alert('Error: ' + xhr.status);
+             }
+           }
+        };
+        xhr.open('GET', 'Help.txt', true);
+        xhr.send(null);
 }
