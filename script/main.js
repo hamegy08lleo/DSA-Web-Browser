@@ -176,7 +176,10 @@ function refreshContent() {
                 let newTabButton = document.createElement('button'); 
                 newTabButton.classList.toggle('function')
                 newTabButton.id = i; 
-                newTabButton.innerHTML = TabList.TabArray[i].current.address;
+                let address = TabList.TabArray[i].current.address;
+                address = address.slice(0,15);
+
+                newTabButton.innerHTML = address;
                 newTabButton.onclick = function() {  
                         if (event.button == 0) {
                                 console.log("CHUOT TRAI"); 
@@ -187,7 +190,7 @@ function refreshContent() {
                 newTabButton.addEventListener('contextmenu', function (e) {
                         e.preventDefault(); // Ngăn chặn hành vi mặc định của chuột phải
                         deleteTab(i);
-                        createNotification("You have deleted Tab"+ (i+1));
+                        createNotification("You have deleted Tab: "+ address);
                     });
             
                 newDiv.appendChild(newTabButton); 
