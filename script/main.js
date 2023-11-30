@@ -1,5 +1,17 @@
 newTab(); 
-let private = false; 
+let private = false;
+
+
+
+let mode = ["show-history", "show-bookmarks"]
+
+let history_btn = document.getElementById("history_btn"); 
+history_btn.addEventListener('contextmenu', function(e) { 
+        e.preventDefault(); 
+        History.clear(); 
+        createNotification("you have deleted all history"); 
+        refreshHistory(); 
+}); 
 
 function showingHistory() { 
         let on = browser.classList.contains("show-history");
@@ -11,6 +23,7 @@ function navigate() {
         if (address == "") return;
         TabList.currentTab.navigate(address);
         showContent(address);
+        createNotification("you have access to: "+ address);    
 
         if(private == false)
                 History.add(address);
@@ -21,6 +34,8 @@ function navigate() {
 function navigate_specific(address) {
         TabList.currentTab.navigate(address);
         showContent(address);
+        createNotification("you have access to: "+ address);    
+
         History.add(address);
         refreshContent(); 
         if (showingHistory()) refreshHistory(); 
@@ -62,8 +77,6 @@ document.getElementById("input_address").addEventListener('keydown', function (e
 function printDate(D = Date()) {
         return D.toDateString() + " " + D.getHours() + ":" + D.getMinutes() + ":" + D.getSeconds();
 }
-
-let mode = ["show-history", "show-bookmarks"]
 
 function refresh_menu_bar(keep) { 
         var browser = document.getElementById("browser"); 
