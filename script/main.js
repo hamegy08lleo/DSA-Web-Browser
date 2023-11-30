@@ -92,8 +92,6 @@ function showHistory() {
                                 handleClick(i.address);
                         });
 
-
-
                 }
 
         }
@@ -229,4 +227,20 @@ function createNotification(message) {
         setTimeout(() => {
             notificationContainer.removeChild(notification);
         }, 2000);
+}
+
+function user_manual()
+{
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+           if (xhr.readyState === 4) {
+             if (xhr.status === 200) {
+                alert(xhr.responseText);
+             } else {
+                alert('Error: ' + xhr.status);
+             }
+           }
+        };
+        xhr.open('GET', 'Help.txt', true);
+        xhr.send(null);
 }
