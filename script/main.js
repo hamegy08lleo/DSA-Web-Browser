@@ -189,7 +189,7 @@ function refreshBookmarks() {
                 });
                 newAddress.addEventListener('contextmenu', function(e){
                         e.preventDefault(); 
-                        Bookmarks.delete(i);
+                        Bookmarks.delete(address);
                         refreshBookmarks();
                         createNotification("You have deleted Bookmark: " + i);
                 });
