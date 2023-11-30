@@ -96,15 +96,12 @@ function getDateTime(now) {
 // testing
 
 function refreshHistory() { 
-        let reversedHistoryArray = []; 
-        for (const address of historyArray) { 
-                reversedHistoryArray.push(address); 
-        }
-        reversedHistoryArray.reverse(); 
-        console.log("REVERSE"); 
         var menu_bar = document.getElementById("menu_bar");
         menu_bar.innerHTML = ""; 
-        for (const address of reversedHistoryArray) {
+        let p = historyList.head; 
+        let cnt = 0; 
+        while (p != null) {
+                let address = p; 
                 let i = address;
                 let newAddress = document.createElement('span');
                 console.log(typeof i.address);
@@ -129,12 +126,17 @@ function refreshHistory() {
 
                 newAddress.addEventListener('contextmenu', function(e){
                         e.preventDefault(); 
-                        deleteTab(i);
-                        createNotification("You have deleted Tab: "+ address);
+                        deleteNavigation(i);
+                        createNotification("You have deleted a Navigation: " + i.address);
                 });
-
+                console.log(cnt++); 
+                p = p.next; 
         }
+}
 
+function deleteNavigation(p) { 
+        History.delete(p); 
+        refreshHistory(); 
 }
 
 function showHistory() {
@@ -245,6 +247,7 @@ function selectTab(index) {
 
 function newTab() { 
         TabList.add(); 
+        console.log(TabList.currentTab.current.address); 
         History.add(TabList.currentTab.current.address); 
         refreshContent();
 }
