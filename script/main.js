@@ -3,7 +3,6 @@ let private = false;
 
 function showingHistory() { 
         let on = browser.classList.contains("show-history");
-        console.log("DUMACUU"); 
         return on == true; 
 }
 
@@ -11,13 +10,12 @@ function navigate() {
         let address = document.getElementById("input_address").value;
         if (address == "") return;
         TabList.currentTab.navigate(address);
-        console.log("DUMA"); 
         showContent(address);
 
-        if (showingHistory()) refreshHistory(); 
         if(private == false)
                 History.add(address);
         refreshContent(); 
+        if (showingHistory()) refreshHistory(); 
 }
 
 function navigate_specific(address) {
@@ -96,9 +94,14 @@ function getDateTime(now) {
 }
 
 function refreshHistory() { 
-        let reversedHistoryArray = historyArray; 
+        let reversedHistoryArray = []; 
+        for (const address of historyArray) { 
+                reversedHistoryArray.push(address); 
+        }
         reversedHistoryArray.reverse(); 
         console.log("REVERSE"); 
+        var menu_bar = document.getElementById("menu_bar");
+        menu_bar.innerHTML = ""; 
         for (const address of reversedHistoryArray) {
                 let i = address;
                 let newAddress = document.createElement('span');
@@ -127,13 +130,12 @@ function refreshHistory() {
 }
 
 function showHistory() {
-        var menu_bar = document.getElementById("menu_bar");
         var browser = document.getElementById("browser");
         refresh_menu_bar("show-history"); 
         var on = browser.classList.contains("show-history");
         if (on == false) {
-                browser.classList.toggle("show-history");
                 menu_bar.innerHTML = "";
+                browser.classList.toggle("show-history");
                 refreshHistory(); 
         }
         else {
