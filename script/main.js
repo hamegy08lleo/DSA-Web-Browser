@@ -122,9 +122,14 @@ function showBookmarks() {
                                 i = i.slice(0,40);
                         }
                         console.log(i.length);
-                        newAddress.addEventListener('click', function() { 
-                                handleClick(i); 
-                        });
+
+
+                        newAddress.onclick = function(){
+                                if(event.button == 0){
+                                        console.log("Chuot trai");
+                                        handleClick(i);
+                                }
+                        };
 
                         menu_bar.appendChild(newAddress); 
 
