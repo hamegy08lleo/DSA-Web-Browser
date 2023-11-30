@@ -6,5 +6,5 @@ Bookmarks.add = function(address) {
 }
 
 Bookmarks.delete = function(address) { 
-        BookmarksMap.delete(address); 
+        BookmarksSet.delete(address); 
 }

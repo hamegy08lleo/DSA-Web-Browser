@@ -3,6 +3,7 @@ let private = false;
 
 function showingHistory() { 
         let on = browser.classList.contains("show-history");
+        console.log("DUMACUU"); 
         return on == true; 
 }
 
@@ -12,6 +13,7 @@ function navigate() {
         TabList.currentTab.navigate(address);
         showContent(address);
 
+        if (showingHistory()) refreshHistory(); 
         if(private == false)
                 History.add(address);
         refreshContent(); 
@@ -23,7 +25,6 @@ function navigate_specific(address) {
         showContent(address);
         History.add(address);
         refreshContent(); 
-        if (showingHistory()) refreshHistory(); 
 }
 
 function showContent(address = TabList.currentTab.current.address) {
@@ -96,14 +97,9 @@ function getDateTime(now) {
 // testing
 
 function refreshHistory() { 
-        let reversedHistoryArray = []; 
-        for (const address of historyArray) { 
-                reversedHistoryArray.push(address); 
-        }
+        let reversedHistoryArray = historyArray; 
         reversedHistoryArray.reverse(); 
         console.log("REVERSE"); 
-        var menu_bar = document.getElementById("menu_bar");
-        menu_bar.innerHTML = ""; 
         for (const address of reversedHistoryArray) {
                 let i = address;
                 let newAddress = document.createElement('span');
@@ -132,12 +128,13 @@ function refreshHistory() {
 }
 
 function showHistory() {
+        var menu_bar = document.getElementById("menu_bar");
         var browser = document.getElementById("browser");
         refresh_menu_bar("show-history"); 
         var on = browser.classList.contains("show-history");
         if (on == false) {
-                menu_bar.innerHTML = "";
                 browser.classList.toggle("show-history");
+                menu_bar.innerHTML = "";
                 refreshHistory(); 
         }
         else {
@@ -163,8 +160,21 @@ function showBookmarks() {
                                 i = i.slice(0,40);
                         }
                         console.log(i.length);
-                        newAddress.addEventListener('click', function() { 
-                                handleClick(i); 
+
+
+                        newAddress.onclick = function(){
+                                if(event.button == 0){
+                                        console.log("Chuot trai");
+                                        handleClick(i);
+                                }
+                        };
+
+                        newAddress.addEventListener('contextmenu', function (e) {
+                                e.preventDefault(); // Ngăn chặn hành vi mặc định của chuột phải
+                                console.log("chuot phai");
+                                Bookmarks.delete(i);
+                                createNotification("You have deleted Bookmark: "+ i);
+                                // refreshBookmark();
                         });
 
                         menu_bar.appendChild(newAddress); 
@@ -240,7 +250,7 @@ function newTab() {
 
 function deleteTab(index) { 
         console.log("DELETE" + index); 
-        TabList.delete(index); 
+        TabList.delete(index);
         refreshContent(); 
 }
 
