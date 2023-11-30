@@ -7,12 +7,14 @@ function navigate() {
         showContent(address);
         if(private == false)
                 History.add(address);
+        refreshContent(); 
 }
 
 function navigate_specific(address) {
         TabList.currentTab.navigate(address);
         showContent(address);
         History.add(address);
+        refreshContent(); 
 }
 
 function showContent(address = TabList.currentTab.current.address) {
@@ -27,6 +29,7 @@ function back() {
                 History.add(address);
                 showContent(address);
         };
+        refreshContent(); 
 }
 
 function next() {
@@ -35,6 +38,7 @@ function next() {
                 History.add(address);
                 showContent(address);
         }
+        refreshContent(); 
 }
 
 document.getElementById("input_address").addEventListener('keydown', function (event) {
@@ -133,9 +137,10 @@ function refreshContent() {
         for (let i = 0; i < TabList.TabArray.length; i++) { 
                 let newDiv = document.createElement('div'); 
                 let newTabButton = document.createElement('button'); 
+                newTabButton.classList.toggle('function')
                 newTabButton.id = i; 
-                newTabButton.innerHTML = "Tab " + (i + 1);
-                newTabButton.onclick = function() { 
+                newTabButton.innerHTML = TabList.TabArray[i].current.address;
+                newTabButton.onclick = function() {  
                         if (event.button == 0) {
                                 console.log("CHUOT TRAI"); 
                                 selectTab(i); 
