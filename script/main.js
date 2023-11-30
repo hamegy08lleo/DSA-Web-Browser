@@ -216,11 +216,16 @@ function showBookmarks() {
         
 }
 
+function showingBookmarks() { 
+        let ck = document.getElementById("browser");
+        return ck.classList.contains("show-bookmarks");
+}
+
 function addToBookmarks() { 
         let address = document.getElementById("input_address").value; 
         if (address.length == 0) return; 
         Bookmarks.add(address); 
-        refreshBookmarks(); 
+        if (showingBookmarks()) refreshBookmarks(); 
 }
 
 function refreshContent() { 
