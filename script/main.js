@@ -127,6 +127,12 @@ function refreshHistory() {
                         handleClick(i.address);
                 });
 
+                newAddress.addEventListener('contextmenu', function(e){
+                        e.preventDefault(); 
+                        deleteTab(i);
+                        createNotification("You have deleted Tab: "+ address);
+                });
+
         }
 
 }
@@ -144,33 +150,37 @@ function showHistory() {
                 menu_bar.innerHTML = "";
                 browser.classList.toggle("show-history");
         }
+}
 
+function refreshBookmarks() { 
+        var menu_bar = document.getElementById("menu_bar"); 
+        menu_bar.innerHTML = "";
+        console.log("refesh"); 
+        for (const address of BookmarksSet) { 
+                let i = address;
+                let newAddress = document.createElement('span'); 
+                newAddress.classList.toggle("right-align"); 
+                if (i.length >= 40){
+                        i = i.slice(0,40);
+                }
+                console.log(i.length);
+                newAddress.addEventListener('click', function() { 
+                        handleClick(i); 
+                });
+
+                menu_bar.appendChild(newAddress); 
+
+                newAddress.innerHTML += i; 
+        }
 }
 
 function showBookmarks() { 
-        var menu_bar = document.getElementById("menu_bar"); 
         var browser = document.getElementById("browser"); 
         refresh_menu_bar("show-bookmarks"); 
         var on = browser.classList.contains("show-bookmarks"); 
         if (on == false) { 
-                menu_bar.innerHTML = "";
                 browser.classList.toggle("show-bookmarks");
-                for (const address of BookmarksSet) { 
-                        let i = address;
-                        let newAddress = document.createElement('span'); 
-                        newAddress.classList.toggle("right-align"); 
-                        if (i.length >= 40){
-                                i = i.slice(0,40);
-                        }
-                        console.log(i.length);
-                        newAddress.addEventListener('click', function() { 
-                                handleClick(i); 
-                        });
-
-                        menu_bar.appendChild(newAddress); 
-
-                        newAddress.innerHTML += i; 
-                }
+                refreshBookmarks();
         }
         else { 
                 menu_bar.innerHTML = ""; 
@@ -183,6 +193,7 @@ function addToBookmarks() {
         let address = document.getElementById("input_address").value; 
         if (address.length == 0) return; 
         Bookmarks.add(address); 
+        refreshBookmarks(); 
 }
 
 function refreshContent() { 
