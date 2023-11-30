@@ -32,7 +32,11 @@
                         </span>
                 </span>
                 <span id="menu">
-                        <button id="help_btn" onclick="user_manual()"> Help</button>
+                        <div class="button">
+                                <a class="button" href="#popup1"> Help </a>
+                        </div>
+                        <!-- <button id="help_btn" onclick="user_manual()"> Help</button> -->
+                        
                         <button id="history_btn" onclick="showHistory()"> History </button>
                         <button id="menu_btn" onclick="showBookmarks()"> Bookmarks </button>
                         <button id="menu_btn" onclick="privateMode()"> Private </button>
@@ -49,6 +53,32 @@
                 </span>
         </div>
         <div id="notification-container"></div>
+
+
+
+        <div id="popup1" class="overlay">
+                <div class="popup">
+                        <h2>User Manual</h2>
+                        <a class="close" href="#"> &times </a>
+                        <div class="content">
+                                <script>
+                                function loadText() {
+                                        var xhr = new XMLHttpRequest();
+                                        xhr.onreadystatechange = function() {
+                                        if (xhr.readyState == 4 && xhr.status == 200) {
+                                        var contentDivs = document.getElementsByClassName("content");
+                                        for (var i = 0; i < contentDivs.length; i++) {
+                                                contentDivs[i].innerHTML = xhr.responseText;
+                                        }
+                                        }
+                                        }
+                                        xhr.open("GET", "Help.txt", true);
+                                        xhr.send();
+                                }
+                                loadText();
+                                </script>
+                        </div>
+                </div>
 
         <script src="./script/Page.js"></script>
         <script src="./script/Tab.js"></script>
