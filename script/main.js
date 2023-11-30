@@ -114,8 +114,18 @@ function showHistory() {
                         newTime.innerHTML += getDateTime(i.time);
                         newAddress.innerHTML += i.address;
                         
+
+                        
                         newAddress.addEventListener('click',function(){
                                 handleClick(i.address);
+                        });
+
+
+                        newAddress.addEventListener('contextmenu', function (e) {
+                                e.preventDefault(); // Ngăn chặn hành vi mặc định của chuột phải
+                                console.log("chuot phai");
+                                // createNotification("You have deleted Bookmark: "+ i);
+                                // // refreshBookmark();
                         });
 
                 }
@@ -152,6 +162,14 @@ function showBookmarks() {
                                         handleClick(i);
                                 }
                         };
+
+                        newAddress.addEventListener('contextmenu', function (e) {
+                                e.preventDefault(); // Ngăn chặn hành vi mặc định của chuột phải
+                                console.log("chuot phai");
+                                Bookmarks.delete(i);
+                                createNotification("You have deleted Bookmark: "+ i);
+                                // refreshBookmark();
+                        });
 
                         menu_bar.appendChild(newAddress); 
 
@@ -226,7 +244,7 @@ function newTab() {
 
 function deleteTab(index) { 
         console.log("DELETE" + index); 
-        TabList.delete(index); 
+        TabList.delete(index);
         refreshContent(); 
 }
 
